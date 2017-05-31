@@ -4,9 +4,12 @@ var bodyParser = require('body-parser');
 var app = express();
 
 
-var urlEncoded = (bodyParser.urlencoded({ extended: true }));
+var urlEncoded = (bodyParser.urlencoded({extended:false}));
+var raw = (bodyParser.raw());
+var text = (bodyParser.text());
+var json = (bodyParser.json());
 
-app.use(urlEncoded);
+//app.use(urlEncoded);
 
 
 var video_count = 0;
@@ -24,8 +27,6 @@ app.get('/videos', function(req, res){
     res.json(json);
 })
 
-
-
 app.get('/dziewczynka/:imie', function(req, res){
     var lancuch = "";
     lancuch += "<h1>Strona www</h1>";
@@ -34,13 +35,44 @@ app.get('/dziewczynka/:imie', function(req, res){
 })
 
 
-app.post('/imie', function(req, res){
+app.post('/imie', urlEncoded, function(req, res){
 
     let body = req.body;
     var lancuch = "";
     lancuch += "<p>" + "Cześć, " + body.imie + "!";
     res.send(lancuch);
 })
+
+app.post('/raw', raw, function(req, res){
+
+    let body = req.body;
+    console.log(body);
+    res.send(body);
+    
+})
+
+app.post('/text', text, function(req, res){
+
+    let body = req.body;
+    console.log(body);
+    res.send(body);
+})
+
+app.post('/json', json, function(req, res){
+
+    let body = req.body;
+    console.log(body);
+    res.send(body);
+})
+
+app.post('/urlEncoded', urlEncoded, function(req, res){
+
+    let body = req.body;
+    console.log(body);
+    res.send(body);
+})
+
+
 
 app.post('/videos', function(req, res){
 
