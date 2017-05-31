@@ -13,5 +13,9 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "html": "^1.0.0"
-  }
+  },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/piotr-kasprzyk/akcja-rozwojowa.git"
+}
 }
